@@ -9,7 +9,14 @@ if (!function_exists('with')){
 if (!function_exists('getho')){
 	function getho($fn/*, $args...*/){
 		ob_start();
-		call_user_func_array($fn, array_slice(func_get_args(), 1));
-		return ob_get_clean();
+		try{
+			$res = call_user_func_array($fn, array_slice(func_get_args(), 1));
+		}
+		catch(Exception $e){
+			$content = ob_get_clean();
+			throw $e;
+		}
+		$content = ob_get_clean();
+		return isset($res) ? $res : $content;
 	}
 }
