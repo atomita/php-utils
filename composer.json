@@ -2,7 +2,7 @@
 	"name": "atomita/php-utils",
 	"keywords": ["utils"],
 	"license": "LGPLv3",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"require": {
 		"atomita/php-facade": "*"
 	},
