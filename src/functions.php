@@ -20,3 +20,17 @@ if (!function_exists('getho')){
 		return isset($res) ? $res : $content;
 	}
 }
+
+if (!function_exists('starts_with')){
+	function starts_with($haystack, $needle)
+	{
+		return $needle === '' || strpos($haystack, $needle) === 0;
+	}
+}
+
+if (!function_exists('ends_with')){
+	function ends_with($haystack, $needle)
+	{
+		return $needle === '' || substr($haystack, -strlen($needle)) === $needle;
+	}
+}
