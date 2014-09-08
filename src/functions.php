@@ -133,3 +133,22 @@ if (!function_exists('nondestructive_uasort')){
 		return $success ? $arr : $org;
 	}
 }
+
+if (!function_exists('near_numbers')){
+	function near_numbers($num, $count = 10, $min = 0, $max = PHP_INT_MAX, $large_is_predominant = true)
+	{
+		return nondestructive_sort(
+			array_slice(
+				nondestructive_ksort(
+					array_filter(
+						array(-1 => $num)
+						+ range($num + 1, $num + $count)
+						+ array_combine(
+							range(0.5 - !$large_is_predominant, $count - !$large_is_predominant),
+							range($num - 1, $num - $count)),
+						function($n)use($min, $max){ return $min <= $n && $n <= $max; })
+				)
+				, 0, $count)
+		);
+	}
+}
