@@ -35,6 +35,22 @@ if (!function_exists('ends_with')){
 	}
 }
 
+if (!function_exists('get_args_name')){
+	function get_args_name($obj, $method = null){
+		if (is_null($method)){
+			$ref = new ReflectionFunction($obj);
+		}
+		else{
+			$ref = new ReflectionMethod($obj, $method);
+		}
+		$names = array();
+		foreach($ref->getParameters() as $parameter){
+			$names[] = $parameter->name;
+		}
+		return $names;
+	}
+}
+
 if (!function_exists('nondestructive_sort')){
 	function nondestructive_sort(array $arr, $sort_flags = SORT_REGULAR)
 	{
